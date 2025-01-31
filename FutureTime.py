@@ -10,7 +10,7 @@ def main():
   #getting current time from system, storing to variable
   now = datetime.datetime.now()
   currentHour = (now.hour - 6) % 24
-  currentMinute = now.minute
+  currentMinute = (now.minute ) % 60
 
   print (currentHour, currentMinute) #this is just for checking, we should delete it later
 
@@ -19,7 +19,7 @@ def main():
   hours = input("Enter hours: ")
   hours = int(hours)
 
-  futureHour = currentHour + hours 
+  futureHour = (currentHour + hours)
   futureHour = futureHour % 24
   print(futureHour)
   #Ask user for minutes
@@ -27,14 +27,16 @@ def main():
   minutes = int(minutes)
 
   #Output the future time in standard format "HH:MM"
-  moreMinutes = 500
-  futureMinute = currentMinute + minutes
+  
+  futureMinute = (currentMinute + minutes)
+  extraHour = (currentMinute + futureMinute) // 60
   futureMinute = futureMinute % 60
-  futureMinute = (currentMinute + moreMinutes) % 60
-  extraHour = (currentMinute + moreMinutes) // 60
+  futureMinute = (currentMinute + minutes) % 60
+  
+
   print(extraHour)
   print(futureMinute)
-  strHour = str(futureHour)
+  strHour = str(futureHour + extraHour)
   strMinute = str(futureMinute)
 
   if futureMinute < 10:
